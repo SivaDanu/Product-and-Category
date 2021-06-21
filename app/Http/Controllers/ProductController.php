@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
-//use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Collection;
 
 class ProductController extends Controller
 {
@@ -40,6 +40,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $request->image->store('Product', 'public');
         $product = new Product();
         $product -> fill($request->all());
         $product -> save();

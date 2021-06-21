@@ -36,6 +36,7 @@
     <table class="table table-bordered table-stripped">
         <tr>
             <th>No : </th>
+            <th>Image : </th>
             <th>Name : </th>
             <th>Scientific Name : </th>
             <th>Categories : </th>
@@ -51,6 +52,9 @@
         @foreach ($data_category as $category)
             <tr>
                 <td>{{$i++}}</td>
+                <td>
+                    <img src="{{asset ('storage/Category', $category->image) }}" width="100" height="100" alt="" />
+                </td>
                 <td>{{$category->name}}</td>
                 <td>{{$category->scientific}}</td>
                 <td>{{$category->category}}</td>

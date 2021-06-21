@@ -35,9 +35,13 @@
                     <h2>Add New Categories</h2>
                 </div>
                 <div class="modal-body">
-                    <form action="{{route('category.store')}}" method="POST">
+                    <form action="{{route('category.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
-
+                        <div class="form-group">
+                            Image :
+                            <input type="file" name="image" class="form-control">
+                            <!--<img src="{/{asset('storage/Category' . $category->image)}}" width="100" height="100" alt="">-->
+                        </div>
                         <div class="form-group">
                             Name :
                             <input type="text" name="name" class="form-control">
@@ -79,7 +83,7 @@
                             </select>
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-warnig">
+                            <button class="btn btn-warning">
                                 <a href="{{route('category.index')}}">
                                     Back
                                 </a>

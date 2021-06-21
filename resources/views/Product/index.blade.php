@@ -33,6 +33,7 @@
         <table class="table table-bordered table-stripped">
             <tr>
                 <th>No : </th>
+                <th>Image : </th>
                 <th>Code : </th>
                 <th>Name : </th>
                 <th>Netto : </th>
@@ -48,6 +49,9 @@
             @foreach ($data_product as $product)
                 <tr>
                     <td>{{$i++}}</td>
+                    <td>
+                        <img src="{{asset('storage/Product' . $product->image)}}" width="100" height="100" alt="">
+                    </td>
                     <td>{{$product->code}}</td>
                     <td>{{$product->name}}</td>
                     <td>{{$product->netto}}</td>

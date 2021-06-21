@@ -39,6 +39,11 @@
                         @csrf
                         @method('PUT')
                         <div class="form-group">
+                            Image :
+                            <input type="file" name="image" value="{{$product->image}}" class="form-control">
+                            <img src="{{asset('storage/Product' . $product->image)}}" width="100" height="100" alt="">
+                        </div>
+                        <div class="form-group">
                             Code :
                             <input type="text" name="code" value="{{$product->code}}" class="form-control">
                         </div>

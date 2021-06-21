@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Validator;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Database\Eloquent\Collection;
 
 class CategoryController extends Controller
 {
@@ -36,8 +40,10 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        $request->image->store('Category', 'public');
         $category = new Category();
         $category -> fill($request->all());
+        //$category -> image=$request->image->hashName();
         $category -> save();
 
         return redirect()->route('category.index')->with('success', 'Add New Category Successfully');
@@ -74,6 +80,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
+        //$category = Category::find($category);
         $category -> update($request->all());
         return redirect('category')->with('success', 'Update Category Successfully');
     }

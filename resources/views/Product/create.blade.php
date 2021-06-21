@@ -25,11 +25,18 @@
     </div>
 @endif
 
-<form action="{{route('product.store')}}" method="POST">
+<form action="{{route('product.store')}}" method="POST" enctype="multipart/form-data">
     @csrf
 
     <div class="modal-body">
         <div class="">
+            <div class="">
+                <div class="form-group">
+                    <strong>Image : </strong>
+                    <input type="file" name="image" class="form-control" placeholder="">
+                    <!--<img src="{/{asset('storage/Product' . $product->image)}}" width="100" height="100" alt="">-->
+                </div>
+            </div>
             <div class="">
                 <div class="form-group">
                     <strong>Code : </strong>
