@@ -43,6 +43,7 @@ class ProductController extends Controller
         $request->image->store('Product', 'public');
         $product = new Product();
         $product -> fill($request->all());
+        //$product -> image=$request->image->hashName();
         $product -> save();
 
         return redirect()->route('product.index')->with('success', 'Add New Product Successfully');
