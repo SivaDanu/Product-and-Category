@@ -35,13 +35,13 @@
                     <h2>Edit Product</h2>
                 </div>
                 <div class="modal-body">
-                    <form action="{{route('product.update', $product->id)}}" method="POST">
+                    <form action="{{route('product.update', $product->id)}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="form-group">
                             Image :
-                            <input type="file" name="image" value="{{$product->image}}" class="form-control">
-                            <img src="{{asset('storage/Product' . $product->image)}}" width="100" height="100" alt="">
+                            <input type="file" name="image" value="{{$product->image}}" class="choose" onchange="readURL(this)">
+                            <img id="blah" src="{{asset('storage/Product/'.$product->image)}}" width="100" height="100" alt="">
                         </div>
                         <div class="form-group">
                             Code :
@@ -84,5 +84,20 @@
     </div>
 </body>
 </html>
+
+<script>
+         function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#blah')
+                        .attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+</script>
 
 @endsection

@@ -42,9 +42,9 @@ class CategoryController extends Controller
     {
         $request->image->store('Category', 'public');
         $category = new Category();
-        $category -> fill($request->all());
-        //$category -> image=$request->image->hashName();
-        $category -> save();
+        $category->fill($request->all());
+        $category->image=$request->image->hashName();
+        $category->save();
 
         return redirect()->route('category.index')->with('success', 'Add New Category Successfully');
     }
@@ -81,7 +81,18 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         //$category = Category::find($category);
-        $category -> update($request->all());
+        $category -> fill($request->all());
+            if ($request->image)
+                {
+                    $request->image->store('Category', 'public');
+                    $category->image=$request->image->hashName();
+                }
+            else
+                {
+                    $category->image=$category->image;
+                }
+        $category->save();
+
         return redirect('category')->with('success', 'Update Category Successfully');
     }
 

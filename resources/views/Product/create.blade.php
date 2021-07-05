@@ -33,7 +33,8 @@
             <div class="">
                 <div class="form-group">
                     <strong>Image : </strong>
-                    <input type="file" name="image" class="form-control" placeholder="">
+                    <input type="file" name="image" class="choose" placeholder="" onchange="readURL(this)">
+                    <img id="blah" width="90" height="100" src="" alt="">
                     <!--<img src="{/{asset('storage/Product' . $product->image)}}" width="100" height="100" alt="">-->
                 </div>
             </div>
@@ -87,5 +88,20 @@
         </div>
     </div>
 </form>
+
+<script>
+    function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#blah')
+                        .attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+</script>
 
 @endsection

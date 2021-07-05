@@ -50,7 +50,7 @@
                 <tr>
                     <td>{{$i++}}</td>
                     <td>
-                        <img src="{{asset('storage/Product' . $product->image)}}" width="100" height="100" alt="">
+                        <img src="{{asset('storage/Product/'.$product->image)}}" width="100" height="100" alt="" />
                     </td>
                     <td>{{$product->code}}</td>
                     <td>{{$product->name}}</td>
@@ -78,5 +78,20 @@
     </div>
 </body>
 </html>
+
+<script>
+    function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#blah')
+                        .attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+</script>
 
 @endsection

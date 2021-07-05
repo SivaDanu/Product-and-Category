@@ -19,5 +19,4 @@ class Category extends Model
         'species',
         'type'
     ];
-
 }

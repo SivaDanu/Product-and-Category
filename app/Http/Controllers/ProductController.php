@@ -42,9 +42,9 @@ class ProductController extends Controller
     {
         $request->image->store('Product', 'public');
         $product = new Product();
-        $product -> fill($request->all());
-        //$product -> image=$request->image->hashName();
-        $product -> save();
+        $product->fill($request->all());
+        $product->image=$request->image->hashName();
+        $product->save();
 
         return redirect()->route('product.index')->with('success', 'Add New Product Successfully');
     }
@@ -80,13 +80,26 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        $product -> update($request->all());
-        return redirect('product')->with('success', 'Product Update Successfully');
+        $product->fill($request->all());
+            if ($request->image)
+                {
+                    $request->image->store('Product', 'public');
+                    $product->image=$request->image->hashName();
+                }
+            else
+                {
+                    $product->image=$product->image;
+                }
+        $product->save();
+
+        return redirect()->route('product.index')->with('success', 'Product Update Successfully');
+        //$product -> update($request->all());
+        //return redirect('product')->with('success', 'Product Update Successfully');
         //$product = new Product();
         //$product -> fill($request->all());
         //$product -> save();
 
-        //return redirect()->route('product.index')->with('success', 'Product Update Successfully');
+
     }
 
     /**

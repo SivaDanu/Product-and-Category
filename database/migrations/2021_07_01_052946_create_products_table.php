@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('image');
             $table->integer('code');
-            $table->string('name');
+            $table->string('name', 250);
             $table->string('netto');
             $table->integer('stock');
             $table->integer('price');
